@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class MyClass
+class Book
 {
 private:
 	string author;
