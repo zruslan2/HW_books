@@ -1,7 +1,13 @@
+#include <locale>
+#include <Windows.h>
 #include "Book.h"
 
 void main()
 {
+	setlocale(LC_ALL, "Ru");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	
 	Book books[10];
 
 	books[0].setBook("Э. Успенский", "Лучшие стихи", "АСТ", 2018, 256);
@@ -15,5 +21,16 @@ void main()
 	books[8].setBook("А. Барто", "Уронили мишку на пол...", "Самовар", 2016, 128);
 	books[9].setBook("А. Пушкин", "У лукоморья дуб зеленый... (стихи)", "Самовар", 2016, 136);
 
+	string author;
+	string publisher;
+	int year;
+	
+	cout << "Введите автора "; 
+	cin.getline(author, 30);
+	for (int i = 0;i < 10;i++)
+	{
+		if (books[i].getAuthor() == author)
+			cout << books[i].getAuthor() << "\t" << books[i].getName() << "\t" << books[i].getPublisher() << "\tгод выпуска: " << books[i].getYear() << "\tколичество страниц: " << books[i].getCPage() << endl;
+	}
 
 }
