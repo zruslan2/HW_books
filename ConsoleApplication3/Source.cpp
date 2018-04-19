@@ -1,5 +1,6 @@
 #include <locale>
 #include <Windows.h>
+#include <iomanip>
 #include "Book.h"
 
 void main()
@@ -21,16 +22,81 @@ void main()
 	books[8].setBook("А. Барто", "Уронили мишку на пол...", "Самовар", 2016, 128);
 	books[9].setBook("А. Пушкин", "У лукоморья дуб зеленый... (стихи)", "Самовар", 2016, 136);
 
-	string author;
-	string publisher;
+	string tmp;	
 	int year;
-	
-	cout << "Введите автора "; 
-	cin.getline(author, 30);
-	for (int i = 0;i < 10;i++)
+	char v;
+
+	while (true)
 	{
-		if (books[i].getAuthor() == author)
-			cout << books[i].getAuthor() << "\t" << books[i].getName() << "\t" << books[i].getPublisher() << "\tгод выпуска: " << books[i].getYear() << "\tколичество страниц: " << books[i].getCPage() << endl;
+		system("cls");
+		cout << "Выберите один из вариантов по выбору книги:" << endl << "a. По автору" << endl << "b. По издательству" << endl << "c. По году" << endl;
+		cin >> v;
+		if (v == 'a' || v == 'b' || v == 'c')break;
+		else
+		{
+			cout << "Такого варианта нет, повторите" << endl;
+			getchar();
+			getchar();
+		}
 	}
+	
+	if (v == 'a')
+	{
+		system("cls");
+		getchar();
+		cout << "Введите автора ";
+		/*cin.getline(tmp, 30);*/
+		getline(cin, tmp);
+
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl << left << setw(15) << "Автор" << setw(35) << "Название книги" << setw(16) << "Издательство" << setw(6) << "Год" << setw(6) << "Кол.ст" << endl;
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl;
+
+		for (int i = 0; i < 10; i++)
+		{
+			if (books[i].getAuthor() == tmp)
+				cout << left << setw(15) << books[i].getAuthor() << setw(35) << books[i].getName() << setw(16) << books[i].getPublisher() << setw(6) << books[i].getYear() << setw(6) << books[i].getCPage() << endl;
+		}
+	}
+	else if (v == 'b')
+	{
+		system("cls");
+		getchar();
+		cout << "Введите издательство ";
+		getline(cin, tmp);
+
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl << left << setw(15) << "Автор" << setw(35) << "Название книги" << setw(16) << "Издательство" << setw(6) << "Год" << setw(6) << "Кол.ст" << endl;
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl;
+
+		for (int i = 0; i < 10; i++)
+		{
+			if (books[i].getPublisher() == tmp)
+				cout << left << setw(15) << books[i].getAuthor() << setw(35) << books[i].getName() << setw(16) << books[i].getPublisher() << setw(6) << books[i].getYear() << setw(6) << books[i].getCPage() << endl;
+		}
+	}
+	else if (v == 'c')
+	{
+		system("cls");
+		getchar();
+		cout << "Выберите год, с которого показать книги ";
+		cin >> year;
+
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl << left << setw(15) << "Автор" << setw(35) << "Название книги" << setw(16) << "Издательство" << setw(6) << "Год" << setw(6) << "Кол.ст" << endl;
+		for (int j = 0; j < 79; j++)cout << "-";
+		cout << endl;
+
+		for (int i = 0; i < 10; i++)
+		{
+			if (books[i].getYear() >= year)
+				cout << left << setw(15) << books[i].getAuthor() << setw(35) << books[i].getName() << setw(16) << books[i].getPublisher() << setw(6) << books[i].getYear() << setw(6) << books[i].getCPage() << endl;
+		}
+	}
+
+	
+	
 
 }
